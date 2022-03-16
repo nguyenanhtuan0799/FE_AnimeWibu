@@ -28,7 +28,9 @@ function Home() {
               }}
             >
               Anime Hot
-              <FireOutlined style={{ color: "red", fontSize: "30px" }} />
+              <FireOutlined
+                style={{ color: "red", fontSize: "30px", marginLeft: "10px" }}
+              />
             </span>
           </Col>
           <Col span={24}>

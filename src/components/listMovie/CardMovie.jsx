@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Divider } from "antd";
 import { StarOutlined } from "@ant-design/icons";
+import { Card, Divider } from "antd";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
-function CardSlide(props) {
+function CardMovie(props) {
   return (
     <div className="card-container">
       <div className="card">
@@ -20,7 +20,7 @@ function CardSlide(props) {
           </Card>
         </Link>
       </div>
-      <div className="overlay">
+      <div className="overlay1">
         <Link to={props.path}>
           <Card
             hoverable
@@ -89,4 +89,4 @@ function CardSlide(props) {
   );
 }
 
-export default CardSlide;
+export default CardMovie;

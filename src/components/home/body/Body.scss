@@ -11,8 +11,12 @@
         display: block;
         
     }
+    &:hover .overlay1 {
+        display: block;
+
+    }
     &:hover .card{
-    animation: zoomIn ease 0.5s;
+    animation: zoomIn ease 0.2s;
 
     }
     &:hover .img-card{
@@ -54,16 +58,13 @@
     opacity: 1;
     height: 240px;
     background-position: center;
-    background-size: contain;
-    background-clip: border-box;
-    background-origin: border-box;
     background-repeat: no-repeat;
     transition: opacity 0.5s;
 }
 
 @keyframes zoomOut {
     from {
-        transform: scale(0);
+        transform: scale(0.6);
     }
 
     to {

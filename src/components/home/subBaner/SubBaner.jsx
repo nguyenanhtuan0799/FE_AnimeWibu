@@ -15,8 +15,8 @@ function SubBaner(props) {
       style={{
         width: "600px",
         position: "absolute",
-        top: "40%",
-        marginLeft: "140px",
+        top: "25%",
+        marginLeft: "100px",
         zIndex: 99,
       }}
     >
@@ -27,21 +27,26 @@ function SubBaner(props) {
       </Row>
       <Row>
         <Col span={24}>
-          <Title style={{ color: "white" }} level={2}>
+          <Title
+            style={{ color: "white", fontSize: "40px", fontWeight: "bold" }}
+            level={2}
+          >
             {props.title}
           </Title>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <Text style={{ color: "white" }}>
+          <Text style={{ color: "white", fontSize: "22px" }}>
             {props.star} <StarOutlined />
           </Text>
           <Divider type="vertical" />
 
-          <Text style={{ color: "white" }}>{props.year}</Text>
+          <Text style={{ color: "white", fontSize: "22px" }}>{props.year}</Text>
           <Divider type="vertical" />
-          <Text style={{ color: "white" }}>{props.chapter} Tập</Text>
+          <Text style={{ color: "white", fontSize: "20px" }}>
+            {props.chapter} Tập
+          </Text>
         </Col>
         <Col span={24}>
           <div
@@ -87,7 +92,7 @@ function SubBaner(props) {
                 style={{ marginRight: "30px" }}
               />
             </Link>
-            <Link to="/asd">
+            <Link to="/movie">
               <Dropdown overlay={menu}>
                 <Button
                   type="primary"

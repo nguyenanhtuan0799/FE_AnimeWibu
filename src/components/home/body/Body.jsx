@@ -4,7 +4,8 @@ import CardSlide from "./CardSlide";
 import { Slide } from "react-slideshow-image";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 import "./Body.scss";
-import img3 from "../../../image/anime/img3.jpg";
+import img3 from "../../../image/anime/slideimg.jpg";
+import cover from "../../../image/anime/cover.jpg";
 
 function Body() {
   const ElRef = React.useRef();
@@ -35,6 +36,7 @@ function Body() {
     {
       title: "Anime1",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",
@@ -45,6 +47,7 @@ function Body() {
     {
       title: "Anime2",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",
@@ -55,6 +58,7 @@ function Body() {
     {
       title: "Anime3",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",
@@ -65,6 +69,7 @@ function Body() {
     {
       title: "Anime4",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",
@@ -75,6 +80,7 @@ function Body() {
     {
       title: "Anime5",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",
@@ -85,6 +91,7 @@ function Body() {
     {
       title: "Anime6",
       banner: img3,
+      cover: cover,
       decs: "Entertainment community sharing source and architectural formula",
       star: "9.4",
       year: "2022",

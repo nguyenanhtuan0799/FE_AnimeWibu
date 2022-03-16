@@ -16,15 +16,9 @@ function Header() {
     },
     {
       title: "Thể Loại",
-      component: <Type />,
     },
     {
       title: "Năm",
-      component: <Type />,
-    },
-    {
-      title: "Bảng Xếp Hạng",
-      path: "/top",
     },
     {
       title: "Tìm Kiếm Nâng Cao",
@@ -55,7 +49,7 @@ function Header() {
                   {element.title}
                 </Link>
               ) : (
-                element.component
+                <Type {...element} />
               )}
             </div>
           ))}

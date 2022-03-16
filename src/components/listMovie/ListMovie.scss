@@ -1,0 +1,11 @@
+.overlay1 {
+    position: absolute;
+    top: 22px;
+    left: -19px;
+    height: 180px;
+    width: 100%;
+    display: none;
+    z-index: 99;
+    transition: all 0.5s;
+    animation: zoomOut ease 0.5s;
+}

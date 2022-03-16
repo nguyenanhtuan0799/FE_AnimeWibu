@@ -6,3 +6,12 @@
             cursor: pointer;
         }
     }
+
+    .type-item {
+        color:white;
+        font-size:15px;
+        &:hover{
+            color:#1890ff;
+
+        }
+    }

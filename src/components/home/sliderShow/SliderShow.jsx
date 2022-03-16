@@ -5,6 +5,9 @@ import SubBaner from "../subBaner/SubBaner";
 import titleBaner from "../../../image/anime/titleBaner.png";
 import "./SlideShow.scss";
 import img2 from "../../../image/anime/img2.jpg";
+import img1 from "../../../image/anime/img1.jpg";
+import img3 from "../../../image/anime/img3.jpg";
+import img4 from "../../../image/anime/img4.jpg";
 
 const contentStyle = {
   height: "160px",
@@ -15,7 +18,7 @@ const contentStyle = {
 };
 const data = [
   {
-    avatar: img2,
+    avatar: img1,
     img: titleBaner,
     title: "Entertainment1",
     star: "9.4",
@@ -37,9 +40,20 @@ const data = [
     path: "/",
   },
   {
-    avatar: img2,
+    avatar: img3,
     img: titleBaner,
     title: "Entertainment3",
+    star: "9.4",
+    year: "2022",
+    chapter: "24",
+    type: ["Action", "Drama", "Fantasy", "Supper Power"],
+    decs: "Entertainment community sharing source and architectural formula technology knowledge Entertainment community sharing source and  architectural formula technology knowledge Entertainment community sharing source and architectural formula technology knowledge",
+    path: "/",
+  },
+  {
+    avatar: img4,
+    img: titleBaner,
+    title: "Entertainment4",
     star: "9.4",
     year: "2022",
     chapter: "24",
