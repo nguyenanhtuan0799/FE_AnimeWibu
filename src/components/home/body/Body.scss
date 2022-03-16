@@ -1,0 +1,88 @@
+.card-container{
+    position: relative;
+    height:420px;display: flex;
+    align-items: center;
+    
+    .card{
+        height: 300px;
+
+    }
+    &:hover .overlay{
+        display: block;
+        
+    }
+    &:hover .card{
+    animation: zoomIn ease 0.5s;
+
+    }
+    &:hover .img-card{
+        height: 140px;
+        opacity: 0.9;
+    }
+}
+
+
+
+.overlay{
+    position: absolute;
+    top:22px;
+    left: -18px;
+    height: 180px;
+    width: 115%;
+    display: none;
+    z-index: 99;
+    transition: all 0.5s;
+    animation: zoomOut ease 0.5s;
+}
+
+.img-card{
+    width: 100%;
+    border-radius: 10px;
+    opacity: 1;
+    height: 240px;
+    background-position: center;
+    background-size: contain;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s;
+}
+
+.img-card1 {
+    width: 100%;
+    border-radius: 10px;
+    opacity: 1;
+    height: 240px;
+    background-position: center;
+    background-size: contain;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+
+    }
+}
+@keyframes zoomIn {
+    from {
+       opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+
+    }
+}
+
+
+
+
+
