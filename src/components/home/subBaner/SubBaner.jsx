@@ -92,7 +92,7 @@ function SubBaner(props) {
                 style={{ marginRight: "30px" }}
               />
             </Link>
-            <Link to="/movie">
+            <Link to="/movie/watch">
               <Dropdown overlay={menu}>
                 <Button
                   type="primary"

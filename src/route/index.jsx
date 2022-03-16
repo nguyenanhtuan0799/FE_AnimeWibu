@@ -6,6 +6,7 @@ import Login from "../components/auth/LoginForm";
 import MainAuth from "../container/layout/MainAuth";
 import MovieDetail from "../container/view/movie/MovieDetail";
 import MovieList from "../container/view/movie/MovieList";
+import Watch from "../container/view/watch/Watch";
 import { Routes, Route } from "react-router-dom";
 
 function Router() {
@@ -24,7 +25,25 @@ function Router() {
         />
         <Route path="/movie">
           <Route
-            path="/movie/:type"
+            path="/movie/:id"
+            element={
+              <MainAuth>
+                <MovieDetail />
+              </MainAuth>
+            }
+          />
+          <Route
+            path="/movie/watch"
+            element={
+              <MainAuth>
+                <Watch />
+              </MainAuth>
+            }
+          />
+        </Route>
+        <Route path="/type">
+          <Route
+            path="/type/:type"
             element={
               <MainAuth>
                 <MovieList />

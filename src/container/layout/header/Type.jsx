@@ -59,7 +59,7 @@ function Type({ title }) {
             }}
             key={i}
           >
-            <Link className="type-item" to={`/movie/` + e.toLowerCase()}>
+            <Link className="type-item" to={`/type/` + e.toLowerCase()}>
               {e}
             </Link>
           </div>
