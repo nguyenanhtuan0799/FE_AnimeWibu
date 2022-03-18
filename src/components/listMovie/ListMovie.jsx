@@ -16,10 +16,12 @@ function ListMovie() {
     getData(loadMore);
     setLoadMore(false);
   }, [loadMore]);
+
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const handleScroll = (e) => {
     if (
       window.innerHeight + e.target.documentElement.scrollTop + 1 >=

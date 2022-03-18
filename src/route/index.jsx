@@ -23,6 +23,7 @@ function Router() {
             </MainAuth>
           }
         />
+
         <Route path="/movie">
           <Route
             path="/movie/:id"
@@ -33,7 +34,7 @@ function Router() {
             }
           />
           <Route
-            path="/movie/watch"
+            path="/movie/watch/:id"
             element={
               <MainAuth>
                 <Watch />
@@ -41,6 +42,7 @@ function Router() {
             }
           />
         </Route>
+
         <Route path="/type">
           <Route
             path="/type/:type"

@@ -23,6 +23,7 @@ function Type({ title }) {
     "Ecchi",
     "Hentai",
     "School",
+    "Supper Power",
   ];
   const year = [
     "2022",
