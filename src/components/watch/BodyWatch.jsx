@@ -5,9 +5,8 @@ import Comment from "./Comment";
 const { Text, Title } = Typography;
 
 const { TabPane } = Tabs;
-const data = ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"];
 
-function BodyWatch({ id }) {
+function BodyWatch({ data, dataName }) {
   return (
     <div style={{ width: "65vw" }}>
       <Col span={24}>
@@ -20,7 +19,7 @@ function BodyWatch({ id }) {
             fontSize: "26px",
           }}
         >
-          <div style={{ fontWeight: "bold" }}>Date A Live</div>
+          <div style={{ fontWeight: "bold" }}>{data.film_name}</div>
           <div
             style={{
               fontSize: "22px",
@@ -30,7 +29,9 @@ function BodyWatch({ id }) {
           >
             <RightOutlined />
           </div>
-          <div style={{ fontSize: "24px", color: "#ccc" }}>Tập {id}</div>
+          <div style={{ fontSize: "24px", color: "#ccc" }}>
+            {data.full_name}
+          </div>
         </div>
       </Col>
       {/** */}
@@ -52,14 +53,14 @@ function BodyWatch({ id }) {
                     }}
                     level={2}
                   >
-                    Date A Live
+                    {data.film_name}
                   </Title>
                 </Col>
               </Row>
               <Row>
                 <Col span={24}>
                   <Text style={{ color: "white", fontSize: "22px" }}>
-                    9.4 <StarOutlined />
+                    {data.views} <StarOutlined />
                   </Text>
                   <Divider
                     type="vertical"
@@ -78,7 +79,9 @@ function BodyWatch({ id }) {
                     }}
                   />
                   <Text style={{ color: "white", fontSize: "20px" }}>
-                    12 Tập
+                    {dataName.episodes &&
+                      dataName.episodes.length > 0 &&
+                      dataName.episodes.length}
                   </Text>
                 </Col>
                 <Col span={24}>
@@ -90,46 +93,29 @@ function BodyWatch({ id }) {
                       margin: "12px 0",
                     }}
                   >
-                    {/* {props.type.map((element, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              margin: "5px 4px 10px 0",
-                              padding: "1px 8px",
-                              fontSize: "16px",
-                              backgroundColor: "#1976d2",
-                              borderRadius: "10px",
-                              color: "white",
-                            }}
-                          >
-                            {element}
-                          </div>
-                        ))} */}
-                    <div
-                      style={{
-                        margin: "5px 4px 10px 0",
-                        padding: "1px 8px",
-                        fontSize: "16px",
-                        backgroundColor: "#1976d2",
-                        borderRadius: "10px",
-                        color: "white",
-                      }}
-                    >
-                      Action
-                    </div>
+                    {dataName.genres &&
+                      dataName.genres.map((element, i) => (
+                        <div
+                          key={i}
+                          style={{
+                            margin: "5px 4px 10px 0",
+                            padding: "1px 8px",
+                            fontSize: "16px",
+                            backgroundColor: "#1976d2",
+                            borderRadius: "10px",
+                            color: "white",
+                          }}
+                        >
+                          {element.name}
+                        </div>
+                      ))}
                   </div>
                 </Col>
               </Row>
               <Row>
                 <Col span={24}>
                   <Text style={{ fontSize: "18px", color: "white" }}>
-                    Entertainment community sharing source and architectural
-                    formula technology knowledgeEntertainment community sharing
-                    source and architectural formula technology
-                    knowledgeEntertainment community sharing source and
-                    architectural formula technology knowledgeEntertainment
-                    community sharing source and architectural formula
-                    technology knowledge
+                    {dataName.description}
                   </Text>
                 </Col>
               </Row>

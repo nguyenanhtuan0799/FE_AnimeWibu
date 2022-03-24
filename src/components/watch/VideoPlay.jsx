@@ -4,9 +4,8 @@ import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { Row, Col } from "antd";
 import video from "../../video/video.mp4";
-const data = ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"];
 
-function VideoPlay({ id }) {
+function VideoPlay({ id, data, dataName }) {
   return (
     <div style={{ height: "71vh", display: "flex" }}>
       <div style={{ width: "66vw", height: "100%" }}>
@@ -15,7 +14,7 @@ function VideoPlay({ id }) {
           playing={true}
           width="100%"
           height="100%"
-          url={video}
+          url={data.videoSource || video}
         />
       </div>
       <div
@@ -29,7 +28,9 @@ function VideoPlay({ id }) {
           <Row>
             <Col span={24}>
               <Link to="/">
-                <h1 style={{ color: "white", margin: "24px" }}>Date A Live</h1>
+                <h1 style={{ color: "white", margin: "24px" }}>
+                  {dataName.name}
+                </h1>
               </Link>
             </Col>
           </Row>
@@ -67,28 +68,34 @@ function VideoPlay({ id }) {
                 id="style-1"
                 style={{
                   margin: "40px 0 16px 16px",
-                  height: "500px",
+                  height: "450px",
                   overflowY: "auto",
                   overflowX: "hidden",
                   paddingRight: " 16px",
                 }}
               >
                 <Row gutter={[8, 8]}>
-                  {data.map((e, i) => (
-                    <Col key={i} span={4}>
-                      <div
-                        style={{
-                          textAlign: "center",
-                          backgroundColor: "rgb(35 37 43)",
-                          padding: "10px",
-                          color:
-                            Number.parseInt(id) === i + 1 ? "#1890ff" : "white",
-                        }}
-                      >
-                        {i + 1}
-                      </div>
-                    </Col>
-                  ))}
+                  {dataName.episodes &&
+                    dataName.episodes.length > 0 &&
+                    dataName.episodes.map((e, i) => (
+                      <Col key={i} span={4}>
+                        <Link
+                          to={`/movie/${dataName.slug}/${dataName.id}/watch/${i}`}
+                        >
+                          <div
+                            style={{
+                              textAlign: "center",
+                              backgroundColor: "rgb(35 37 43)",
+                              padding: "10px",
+                              color:
+                                Number.parseInt(id) === i ? "#1890ff" : "white",
+                            }}
+                          >
+                            {i + 1}
+                          </div>
+                        </Link>
+                      </Col>
+                    ))}
                 </Row>
               </div>
             </Col>

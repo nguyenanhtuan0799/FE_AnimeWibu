@@ -1,30 +1,9 @@
 import React from "react";
 import { Row, Col, Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
+import { typeC } from "../../../constain/constain";
 const { Item } = Menu;
 function Type({ title }) {
-  const type = [
-    "Adventure",
-    "Bishojo",
-    "Fantasy",
-    "Harem",
-    "Yaoi",
-    "Yuri",
-    "Scifi",
-    "Kodomo",
-    "Horror",
-    "Romance",
-    "Sports",
-    "Comedy",
-    "Detective",
-    "Vampire",
-    "Shojo",
-    "Shonen",
-    "Ecchi",
-    "Hentai",
-    "School",
-    "Supper Power",
-  ];
   const year = [
     "2022",
     "2021",
@@ -60,8 +39,8 @@ function Type({ title }) {
             }}
             key={i}
           >
-            <Link className="type-item" to={`/type/` + e.toLowerCase()}>
-              {e}
+            <Link className="type-item" to={`/type/${e.slug}`}>
+              {e.name}
             </Link>
           </div>
         ))}
@@ -70,7 +49,7 @@ function Type({ title }) {
   );
   return (
     <Dropdown
-      overlay={title === "Thể Loại" ? menuType(type) : menuType(year)}
+      overlay={title === "Thể Loại" ? menuType(typeC) : menuType(year)}
       placement="bottomLeft"
       arrow={{ pointAtCenter: true }}
     >

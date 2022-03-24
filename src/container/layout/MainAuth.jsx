@@ -23,6 +23,7 @@ function MainAuth({ children }) {
           position: "fixed",
           zIndex: "99",
           opacity: `${scroll <= 200 ? 1 : 0.8}`,
+          transition: "opacity 0.5s",
         }}
       >
         <HeaderAuth />

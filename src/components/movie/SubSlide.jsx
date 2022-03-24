@@ -13,25 +13,13 @@ import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 const { Text, Title } = Typography;
 
-function SubSlide() {
-  const data = {
-    title: "Date A Live (Session 1)",
-    banner: "img3",
-    cover: "cover",
-    decs: "Entertainment community sharing source and architectural formuntertainment community sharing source and architectural formasd asd qweasafw tertainment community sharing source and architectural formu tertainment community sharing source and architectural formula",
-    star: "9.4",
-    year: "2022",
-    chapter: "24",
-    type: ["Action", "Drama", "Fantasy", "Supper Power"],
-    check: false,
-    path: "/",
-  };
+function SubSlide({ data }) {
   return (
     <div
       style={{
         position: "absolute",
         color: "white",
-        top: "36%",
+        top: "24%",
         zIndex: "2",
         left: "3%",
         width: "640px",
@@ -44,12 +32,12 @@ function SubSlide() {
             style={{ color: "white", fontSize: "50px", fontWeight: "bold" }}
             level={2}
           >
-            {data.title}
+            {data.name}
           </Title>
         </Col>
         <Col span={24}>
           <Text style={{ color: "white", fontSize: "24px" }}>
-            {data.star} <StarOutlined />
+            {data.views} <StarOutlined />
           </Text>
           <Divider
             type="vertical"
@@ -60,7 +48,7 @@ function SubSlide() {
             }}
           />
 
-          <Text style={{ color: "white", fontSize: "24px" }}>{data.year}</Text>
+          <Text style={{ color: "white", fontSize: "24px" }}>2020</Text>
           <Divider
             type="vertical"
             style={{
@@ -70,7 +58,7 @@ function SubSlide() {
             }}
           />
           <Text style={{ color: "white", fontSize: "20px" }}>
-            {data.chapter} / {data.chapter} Tập
+            {data.episodes ? data.episodes.length : 0} Tập
           </Text>
         </Col>
         <Col span={24}>
@@ -82,8 +70,15 @@ function SubSlide() {
               display: "block",
             }}
           >
-            Tình Trạng :{data.check ? " Hoàn Thành " : " Chưa Hoàn Thành "}
-            {data.check ? <CheckOutlined /> : <ClockCircleOutlined />}
+            Tình Trạng :
+            {data.episodes && data.episodes.length > 0
+              ? "  Đang Tiến Hành"
+              : "Chưa Phát Hành"}
+            {data.episodes && data.episodes.length > 0 ? (
+              <ClockCircleOutlined />
+            ) : (
+              <CheckOutlined />
+            )}
           </Text>
         </Col>
         <Col span={24}>
@@ -95,31 +90,40 @@ function SubSlide() {
               margin: "12px 0",
             }}
           >
-            {data.type.map((element, i) => (
-              <div
-                key={i}
-                style={{
-                  margin: "5px 8px 10px 0",
-                  padding: "2px 10px",
-                  fontSize: "16px",
-                  backgroundColor: "#1976d2",
-                  borderRadius: "10px",
-                  color: "white",
-                }}
-              >
-                {element}
-              </div>
-            ))}
+            {data.genres &&
+              data.genres.map((element, i) => (
+                <div
+                  key={i}
+                  style={{
+                    margin: "5px 8px 10px 0",
+                    padding: "2px 10px",
+                    fontSize: "16px",
+                    backgroundColor: "#1976d2",
+                    borderRadius: "10px",
+                    color: "white",
+                  }}
+                >
+                  {element.name}
+                </div>
+              ))}
           </div>
         </Col>
         <Col span={24}>
-          <Text style={{ fontSize: "18px", color: "white" }}>{data.decs}</Text>
+          <Text style={{ fontSize: "18px", color: "white" }}>
+            {data.description}
+          </Text>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
           <div style={{ marginTop: "20px" }}>
-            <Link to={data.path}>
+            <Link
+              to={
+                data.episodes && data.episodes.length > 0
+                  ? `/movie/${data.slug}/${data.id}/watch/0`
+                  : `/movie/${data.slug}`
+              }
+            >
               <Button
                 type="primary"
                 shape="round"

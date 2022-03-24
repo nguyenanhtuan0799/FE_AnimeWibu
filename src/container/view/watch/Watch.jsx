@@ -5,11 +5,26 @@ import { Link, useParams } from "react-router-dom";
 import CardTop from "../../../components/top/CardTop";
 import VideoPlay from "../../../components/watch/VideoPlay";
 import BodyWatch from "../../../components/watch/BodyWatch";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getEpisodesAnime,
+  getInfomationAnime,
+} from "../../../redux/actions/actions";
 import "./Watch.scss";
 
 function Watch() {
-  const { id } = useParams();
-  const data = ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"];
+  const { slugname, slug, id } = useParams();
+  const state = useSelector((s) => s.infoAnimeApp);
+  const { episodesAnime, infoAnime } = state;
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    const getEpisodesAnime1 = async () => {
+      await getEpisodesAnime(dispatch, slug, id);
+      await getInfomationAnime(dispatch, slugname);
+    };
+    getEpisodesAnime1();
+  }, [id, slug, slugname]);
+
   return (
     <div
       style={{
@@ -23,13 +38,20 @@ function Watch() {
         <Col span={20}>
           <Row>
             <Col span={24}>
-              <VideoPlay id={id} />
+              <VideoPlay
+                id={id}
+                data={episodesAnime !== null && episodesAnime}
+                dataName={infoAnime !== null && infoAnime}
+              />
             </Col>
           </Row>
           <Row>
             <Col span={24}>
               <div style={{ display: "flex" }}>
-                <BodyWatch id={id} />
+                <BodyWatch
+                  data={episodesAnime !== null && episodesAnime}
+                  dataName={infoAnime !== null && infoAnime}
+                />
                 <div
                   style={{
                     width: "18vw",
@@ -49,9 +71,9 @@ function Watch() {
                     Bảng Xếp Hạng
                   </p>
                   <Divider />
-                  {data.map((e, i) => (
+                  {/* {data.map((e, i) => (
                     <CardTop key={i} />
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </Col>

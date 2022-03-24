@@ -26,7 +26,7 @@ function Router() {
 
         <Route path="/movie">
           <Route
-            path="/movie/:id"
+            path="/movie/:slug"
             element={
               <MainAuth>
                 <MovieDetail />
@@ -34,7 +34,7 @@ function Router() {
             }
           />
           <Route
-            path="/movie/watch/:id"
+            path="/movie/:slugname/:slug/watch/:id"
             element={
               <MainAuth>
                 <Watch />
