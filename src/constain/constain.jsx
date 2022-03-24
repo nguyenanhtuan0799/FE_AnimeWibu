@@ -19,4 +19,4 @@ export const typeC = [
 ];
 // export const BASE_URL = "http://localhost:3001/api/v1";
 
-export const BASE_URL = "https://netime.glitch.me/api/v1";
+export const BASE_URL = "https://wibulord.herokuapp.com/api/v1";
