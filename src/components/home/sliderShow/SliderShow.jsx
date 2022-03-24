@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
-import SubBaner from "../subBaner/SubBaner";
+import SubBaner from "../../subBaner/SubBaner";
 import titleBaner from "../../../image/anime/titleBaner.png";
 import "./SlideShow.scss";
 import img2 from "../../../image/anime/img2.jpg";
