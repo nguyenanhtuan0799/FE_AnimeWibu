@@ -5,6 +5,7 @@ import App from "./App";
 import "antd/dist/antd.css";
 import "react-slideshow-image/dist/styles.css";
 import reportWebVitals from "./reportWebVitals";
+import "react-spinner-animated/dist/index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
