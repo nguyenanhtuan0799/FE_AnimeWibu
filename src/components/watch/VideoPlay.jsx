@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Row, Col } from "antd";
 import video from "../../video/video.mp4";
 
-function VideoPlay({ id, data, dataName }) {
+function VideoPlay({ id, data, dataName, loading }) {
   return (
     <div style={{ height: "71vh", display: "flex" }}>
       <div style={{ width: "66vw", height: "100%" }}>
@@ -14,7 +14,7 @@ function VideoPlay({ id, data, dataName }) {
           playing={true}
           width="100%"
           height="100%"
-          url={data.videoSource || video}
+          url={loading ? data.videoSource : ""}
         />
       </div>
       <div

@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 import CardSlide from "./CardSlide";
 import { Slide } from "react-slideshow-image";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
+import { ShimmerThumbnail } from "react-shimmer-effects";
 import "./Body.scss";
 
 function Body({ data }) {
@@ -52,14 +53,16 @@ function Body({ data }) {
         </div>
       </Col>
       <Col span={22}>
-        <Slide ref={ElRef} {...properties}>
-          {data !== null &&
-            data.map((e, i) => (
-              <div key={i} style={style}>
-                <CardSlide data={e} />
-              </div>
-            ))}
-        </Slide>
+        {
+          <Slide ref={ElRef} {...properties}>
+            {data !== null &&
+              data.map((e, i) => (
+                <div key={i} style={style}>
+                  <CardSlide data={e} />
+                </div>
+              ))}
+          </Slide>
+        }
       </Col>
       <Col span={1}>
         <div

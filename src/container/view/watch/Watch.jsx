@@ -13,6 +13,7 @@ import {
 import "./Watch.scss";
 
 function Watch() {
+  const [loading, setLoading] = React.useState(false);
   const { slugname, slug, id } = useParams();
   const state = useSelector((s) => s.infoAnimeApp);
   const { episodesAnime, infoAnime } = state;
@@ -21,6 +22,7 @@ function Watch() {
     const getEpisodesAnime1 = async () => {
       await getEpisodesAnime(dispatch, slug, id);
       await getInfomationAnime(dispatch, slugname);
+      setLoading(true);
     };
     getEpisodesAnime1();
   }, [id, slug, slugname]);
@@ -39,6 +41,7 @@ function Watch() {
           <Row>
             <Col span={24}>
               <VideoPlay
+                loading={loading}
                 id={id}
                 data={episodesAnime !== null && episodesAnime}
                 dataName={infoAnime !== null && infoAnime}
@@ -49,6 +52,7 @@ function Watch() {
             <Col span={24}>
               <div style={{ display: "flex" }}>
                 <BodyWatch
+                  loading={loading}
                   data={episodesAnime !== null && episodesAnime}
                   dataName={infoAnime !== null && infoAnime}
                 />

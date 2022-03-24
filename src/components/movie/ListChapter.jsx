@@ -1,30 +1,51 @@
 import React from "react";
 import { Tabs, Row, Col } from "antd";
+import { Oval } from "@agney/react-loading";
 import Chapter from "./Chapter";
 
 const { TabPane } = Tabs;
-function ListChapter({ data }) {
+function ListChapter({ loading, data }) {
+  const Loading = () => (
+    <Col span={24}>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Oval style={{ height: "10vh" }} />
+      </div>
+    </Col>
+  );
   return (
     <div id="scroll" style={{ padding: "0 60px" }}>
       <Tabs style={{ color: "white" }} defaultActiveKey="1" size="large">
         <TabPane tab="Chọn Tập" key="1">
           <div style={{ margin: "16px 10px 20px" }}>
             <Row gutter={[16, 32]}>
-              {data.episodes && data.episodes.length > 0 ? (
-                data.episodes &&
-                data.episodes.length > 0 &&
-                data.episodes.map((e, i) => (
-                  <Col key={i} span={4}>
-                    <Chapter
-                      data={e}
-                      slug={data.id}
-                      slugName={data.slug}
-                      index={i}
-                    />
-                  </Col>
-                ))
+              {loading ? (
+                data.episodes && data.episodes.length > 0 ? (
+                  data.episodes &&
+                  data.episodes.length > 0 &&
+                  data.episodes.map((e, i) => (
+                    <Col key={i} span={4}>
+                      <Chapter
+                        data={e}
+                        slug={data.id}
+                        slugName={data.slug}
+                        index={i}
+                      />
+                    </Col>
+                  ))
+                ) : (
+                  <Col span={24}>Anime Chưa Phát Hành</Col>
+                )
               ) : (
-                <Col span={24}>Anime Chưa Phát Hành</Col>
+                <Loading />
               )}
             </Row>
           </div>
