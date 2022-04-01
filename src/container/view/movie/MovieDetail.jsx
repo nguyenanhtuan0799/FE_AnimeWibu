@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getInfomationAnime } from "../../../redux/actions/actions";
 function MovieDetail() {
-  const [loading, setLoading] = useState(false);
   const state = useSelector((s) => s.infoAnimeApp);
   const { infoAnime } = state;
   const dispatch = useDispatch();
   const { slug } = useParams();
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
     const getInfoAnime = async () => {

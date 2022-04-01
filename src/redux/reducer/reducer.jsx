@@ -8,6 +8,7 @@ const animeApp = createSlice({
     trendingAnimeYear: null,
     infoAnime: null,
     episodesAnime: null,
+    animeSlide: null,
   },
   reducers: {
     getTrendingDay: (state, action) => {
@@ -25,6 +26,9 @@ const animeApp = createSlice({
     getEpisodesAnime: (state, action) => {
       state.episodesAnime = action.payload;
     },
+    getAnimeSlide: (state, action) => {
+      state.animeSlide = action.payload;
+    },
   },
 });
 
@@ -34,5 +38,6 @@ export const {
   getTrendingYear,
   getInfoAnime,
   getEpisodesAnime,
+  getAnimeSlide,
 } = animeApp.actions;
 export default animeApp.reducer;

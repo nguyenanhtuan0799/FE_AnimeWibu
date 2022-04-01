@@ -22,7 +22,7 @@ function SubBaner(props) {
     >
       <Row>
         <Col span={24}>
-          <img style={{ width: "70%" }} src={props.img} alt="title" />
+          <img style={{ width: "70%" }} src={props.banner} alt="title" />
         </Col>
       </Row>
       <Row>
@@ -31,21 +31,21 @@ function SubBaner(props) {
             style={{ color: "white", fontSize: "40px", fontWeight: "bold" }}
             level={2}
           >
-            {props.title}
+            {props.name}
           </Title>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
           <Text style={{ color: "white", fontSize: "22px" }}>
-            {props.star} <StarOutlined />
+            {props.views} <StarOutlined />
           </Text>
           <Divider type="vertical" />
 
-          <Text style={{ color: "white", fontSize: "22px" }}>{props.year}</Text>
+          <Text style={{ color: "white", fontSize: "22px" }}>2022</Text>
           <Divider type="vertical" />
           <Text style={{ color: "white", fontSize: "20px" }}>
-            {props.chapter} Tập
+            {props.episodes.length} Tập
           </Text>
         </Col>
         <Col span={24}>
@@ -57,7 +57,7 @@ function SubBaner(props) {
               margin: "12px 0",
             }}
           >
-            {props.type.map((element, i) => (
+            {props.genres.map((element, i) => (
               <div
                 key={i}
                 style={{
@@ -69,7 +69,7 @@ function SubBaner(props) {
                   color: "white",
                 }}
               >
-                {element}
+                {element.name}
               </div>
             ))}
           </div>
@@ -77,13 +77,15 @@ function SubBaner(props) {
       </Row>
       <Row>
         <Col span={24}>
-          <Text style={{ fontSize: "18px", color: "white" }}>{props.decs}</Text>
+          <Text style={{ fontSize: "18px", color: "white" }}>
+            {props.description}
+          </Text>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
           <div style={{ marginTop: "20px" }}>
-            <Link to={props.path}>
+            <Link to={`/movie/${props.slug}`}>
               <Button
                 type="primary"
                 shape="round"
@@ -92,7 +94,7 @@ function SubBaner(props) {
                 style={{ marginRight: "30px" }}
               />
             </Link>
-            <Link to="/movie/watch">
+            <Link to="">
               <Dropdown overlay={menu}>
                 <Button
                   type="primary"

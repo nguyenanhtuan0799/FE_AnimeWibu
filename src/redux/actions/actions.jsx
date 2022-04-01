@@ -1,5 +1,11 @@
 import axios from "axios";
 import * as actions from "../reducer/reducer";
+
+import img1 from "../../image/anime/img1.jpg";
+import img3 from "../../image/anime/img3.jpg";
+import img4 from "../../image/anime/img4.jpg";
+import titleBaner from "../../image/anime/titleBaner.png";
+
 import { BASE_URL } from "../../constain/constain";
 
 export const getTrendingAnimeDay = async (dispatch) => {
@@ -60,6 +66,36 @@ export const getEpisodesAnime = async (dispatch, slug, id) => {
     const res = await axios.get(`${BASE_URL}/anime/${slug}/episodes/${id}`);
 
     dispatch(actions.getEpisodesAnime(res.data.data));
+  } catch (e) {
+    console.log("error getInfoAnime", e);
+  }
+};
+
+export const getAnimeSlide = async (dispatch) => {
+  try {
+    const res1 = await axios.get(`${BASE_URL}/anime/date-a-live`);
+    const res2 = await axios.get(`${BASE_URL}/anime/date-a-live-ii`);
+    const res3 = await axios.get(
+      `${BASE_URL}/anime/date-a-live-movie-mayuri-judgment`
+    );
+    const arr = [
+      {
+        banner: titleBaner,
+        avatar: img1,
+        ...res1.data.data,
+      },
+      {
+        banner: titleBaner,
+        avatar: img3,
+        ...res2.data.data,
+      },
+      {
+        banner: titleBaner,
+        avatar: img4,
+        ...res3.data.data,
+      },
+    ];
+    dispatch(actions.getAnimeSlide(arr));
   } catch (e) {
     console.log("error getInfoAnime", e);
   }
