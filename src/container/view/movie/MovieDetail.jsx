@@ -4,6 +4,7 @@ import Slide from "../../../components/movie/Slide";
 import ListChapter from "../../../components/movie/ListChapter";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import LoadingPage from "../../../components/sekeletion/LoadingPage";
 import { getInfomationAnime } from "../../../redux/actions/actions";
 function MovieDetail() {
   const state = useSelector((s) => s.infoAnimeApp);
@@ -22,19 +23,22 @@ function MovieDetail() {
 
   return (
     <>
-      <Row>
-        <Col span={24}>
-          <Slide loading={loading} data={infoAnime !== null && infoAnime} />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <ListChapter
-            loading={loading}
-            data={infoAnime !== null && infoAnime}
-          />
-        </Col>
-      </Row>
+      {loading ? (
+        <>
+          <Row>
+            <Col span={24}>
+              <Slide data={infoAnime !== null && infoAnime} />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <ListChapter data={infoAnime !== null && infoAnime} />
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <LoadingPage />
+      )}
     </>
   );
 }

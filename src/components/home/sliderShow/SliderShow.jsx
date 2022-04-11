@@ -18,11 +18,9 @@ function SliderShow() {
     ElRef.current.prev();
   };
   React.useEffect(() => {
-    const getAnime = async () => {
-      await getAnimeSlide(dispatch);
-    };
-    getAnime();
+    getAnimeSlide(dispatch);
   }, []);
+
   return (
     <>
       <Carousel ref={ElRef} autoplay>
