@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import SliderShow from "../../components/home/sliderShow/SliderShow";
 import Body from "../../components/home/body/Body";
 import { Row, Col } from "antd";
@@ -9,7 +9,6 @@ import {
   getTrendingAnimeDay,
   getTrendingAnimeMonth,
   getTrendingAnimeYear,
-  getAnimeSlide,
 } from "../../redux/actions/actions";
 
 function Home() {

@@ -9,12 +9,17 @@ import "react-spinner-animated/dist/index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
+import ButtonScrollToTop from "./components/scrollToTop/ButtonScrollToTop";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ButtonScrollToTop>
+          <ScrollToTop>
+            <App />
+          </ScrollToTop>
+        </ButtonScrollToTop>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
