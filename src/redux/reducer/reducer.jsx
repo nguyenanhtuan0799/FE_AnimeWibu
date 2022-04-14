@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import * as Storage from "../../utils/saveStorage";
 
 const animeApp = createSlice({
   name: "Anime",
@@ -9,6 +10,7 @@ const animeApp = createSlice({
     infoAnime: null,
     episodesAnime: null,
     animeSlide: null,
+    accountUser: Storage.getStorage("auth") || null,
   },
   reducers: {
     getTrendingDay: (state, action) => {
@@ -29,6 +31,12 @@ const animeApp = createSlice({
     getAnimeSlide: (state, action) => {
       state.animeSlide = action.payload;
     },
+    getLoginAccount: (state, action) => {
+      state.accountUser = action.payload;
+    },
+    getLogoutnAccount: (state) => {
+      state.accountUser = null;
+    },
   },
 });
 
@@ -39,5 +47,7 @@ export const {
   getInfoAnime,
   getEpisodesAnime,
   getAnimeSlide,
+  getLoginAccount,
+  getLogoutnAccount,
 } = animeApp.actions;
 export default animeApp.reducer;

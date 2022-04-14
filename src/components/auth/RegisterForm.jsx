@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import "./auth.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-
+import { registerAccount } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const schema = yup.object().shape({
   firstname: yup.string().required("This field must be required!"),
   lastname: yup.string().required("This field must be required!"),
@@ -17,6 +19,10 @@ const schema = yup.object().shape({
 });
 
 function RegisterForm(props) {
+  const state = useSelector((s) => s.infoAnimeApp);
+  const { accountUser } = state;
+  let navigation = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -27,7 +33,10 @@ function RegisterForm(props) {
         cf_password: "",
       }}
       validationSchema={schema}
-      onSubmit={(values) => {}}
+      onSubmit={({ email, password }) => {
+        registerAccount(dispatch, email, password);
+        navigation("/", { replace: true });
+      }}
     >
       {(props) => {
         return (

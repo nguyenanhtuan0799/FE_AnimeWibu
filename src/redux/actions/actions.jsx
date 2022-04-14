@@ -1,13 +1,18 @@
 import axios from "axios";
 import * as actions from "../reducer/reducer";
-
 import img1 from "../../image/anime/img1.jpg";
 import img3 from "../../image/anime/img3.jpg";
 import img4 from "../../image/anime/img4.jpg";
 import titleBaner from "../../image/anime/titleBaner.png";
 
 import { BASE_URL } from "../../constain/constain";
-
+import { auth } from "../../firebase/config";
+import {
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import * as Storage from "../../utils/saveStorage";
 export const getTrendingAnimeDay = async (dispatch) => {
   try {
     const res = await axios.get(`${BASE_URL}/ranking/ngay`);
@@ -98,5 +103,33 @@ export const getAnimeSlide = async (dispatch) => {
     dispatch(actions.getAnimeSlide(arr));
   } catch (e) {
     console.log("error getInfoAnime", e);
+  }
+};
+
+export const LoginAccount = async (dispatch, email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    Storage.setStorage("auth", auth.currentUser.email);
+    dispatch(actions.getLoginAccount(auth.currentUser.email));
+  } catch (e) {
+    console.log("error account", e);
+  }
+};
+export const LogoutAccount = async (dispatch) => {
+  try {
+    await signOut(auth);
+    Storage.removeStorage("auth");
+    dispatch(actions.getLogoutnAccount());
+  } catch (e) {
+    console.log("error account", e);
+  }
+};
+export const registerAccount = async (dispatch, email, password) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    Storage.setStorage("auth", auth.currentUser.email);
+    dispatch(actions.getLoginAccount(auth.currentUser.email));
+  } catch (e) {
+    console.log("error account", e);
   }
 };

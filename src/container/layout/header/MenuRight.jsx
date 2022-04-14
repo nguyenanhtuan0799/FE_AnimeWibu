@@ -1,10 +1,52 @@
 import React from "react";
-import { Menu, Select } from "antd";
+import { Menu, Select, Avatar, Typography } from "antd";
 import { Link } from "react-router-dom";
-
+import { Dropdown } from "antd";
+import { UserOutlined, HeartOutlined, LogoutOutlined } from "@ant-design/icons";
+import { auth } from "../../../firebase/config";
+import { useSelector, useDispatch } from "react-redux";
+import { LogoutAccount } from "../../../redux/actions/actions";
+const { Text, Title } = Typography;
 const { Option } = Select;
 const { Item } = Menu;
+
 function MenuRight() {
+  const dispatch = useDispatch();
+  const state = useSelector((s) => s.infoAnimeApp);
+  const { accountUser } = state;
+  const format = (values) => {
+    const i = values.indexOf("@");
+    const cut = values.slice(0, i);
+    return cut.charAt(0).toUpperCase() + cut.slice(1);
+  };
+  const style = {
+    margin: "6px 0",
+  };
+  const style1 = {
+    marginRight: "10px",
+  };
+  const menu = (
+    <Menu style={{ minWidth: "9vw" }}>
+      <Item style={style} key="1">
+        <UserOutlined style={style1} />
+        <Link to="/">Profile</Link>
+      </Item>
+      <Item style={style} key="2">
+        <HeartOutlined style={style1} />
+        <Link to="/">Theo Doi</Link>
+      </Item>
+      <Item
+        style={style}
+        key="3"
+        onClick={() => {
+          LogoutAccount(dispatch);
+        }}
+      >
+        <LogoutOutlined style={style1} />
+        <Link to="/">Logout</Link>
+      </Item>
+    </Menu>
+  );
   return (
     <div
       style={{
@@ -21,14 +63,26 @@ function MenuRight() {
         </Select>
       </div>
       <div style={{ marginLeft: "16px", padding: "0 24px" }}>
-        <Link className="tab-link" to="/login">
-          Đăng Nhập
-        </Link>
+        {accountUser ? (
+          <Text style={{ color: "white", fontSize: "18px" }}>
+            {format(accountUser)}
+          </Text>
+        ) : (
+          <Link className="tab-link" to="/login">
+            Đăng Nhập
+          </Link>
+        )}
       </div>
       <div>
-        <Link className="tab-link" to="/register">
-          Đăng Ký
-        </Link>
+        {accountUser ? (
+          <Dropdown overlay={menu} placement="bottomRight" arrow>
+            <Avatar size="large" icon={<UserOutlined />} />
+          </Dropdown>
+        ) : (
+          <Link className="tab-link" to="/register">
+            Đăng Ký
+          </Link>
+        )}
       </div>
     </div>
   );

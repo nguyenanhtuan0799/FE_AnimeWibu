@@ -2,6 +2,9 @@ import React from "react";
 import "./auth.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import { LoginAccount } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().required("This field must be required!").email(),
@@ -9,11 +12,20 @@ const schema = yup.object().shape({
 });
 
 function LoginForm(props) {
+  const state = useSelector((s) => s.infoAnimeApp);
+  const { accountUser } = state;
+  let navigation = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Formik
       validationSchema={schema}
       initialValues={{ email: "", password: "" }}
-      onSubmit={(values) => {}}
+      onSubmit={({ email, password }) => {
+        LoginAccount(dispatch, email, password);
+        if (accountUser) {
+          navigation("/", { replace: true });
+        }
+      }}
     >
       {(props) => {
         return (

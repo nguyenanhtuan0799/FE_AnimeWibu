@@ -11,59 +11,29 @@ import { Routes, Route } from "react-router-dom";
 
 function Router() {
   return (
-    <Routes>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/">
-        <Route
-          index
-          element={
-            <MainAuth>
-              <Home />
-            </MainAuth>
-          }
-        />
+    <MainAuth>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/">
+          <Route index element={<Home />} />
 
-        <Route path="/movie">
-          <Route
-            path="/movie/:slug"
-            element={
-              <MainAuth>
-                <MovieDetail />
-              </MainAuth>
-            }
-          />
-          <Route
-            path="/movie/:slugname/:slug/watch/:id"
-            element={
-              <MainAuth>
-                <Watch />
-              </MainAuth>
-            }
-          />
+          <Route path="/movie">
+            <Route path="/movie/:slug" element={<MovieDetail />} />
+            <Route
+              path="/movie/:slugname/:slug/watch/:id"
+              element={<Watch />}
+            />
+          </Route>
+
+          <Route path="/type">
+            <Route path="/type/:type" element={<MovieList />} />
+          </Route>
+
+          <Route path="*" element={<Page404 />} />
         </Route>
-
-        <Route path="/type">
-          <Route
-            path="/type/:type"
-            element={
-              <MainAuth>
-                <MovieList />
-              </MainAuth>
-            }
-          />
-        </Route>
-
-        <Route
-          path="*"
-          element={
-            <MainAuth>
-              <Page404 />
-            </MainAuth>
-          }
-        />
-      </Route>
-    </Routes>
+      </Routes>
+    </MainAuth>
   );
 }
 
