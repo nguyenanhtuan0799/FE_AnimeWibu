@@ -43,7 +43,7 @@ function MenuRight() {
         }}
       >
         <LogoutOutlined style={style1} />
-        <Link to="/">Logout</Link>
+        Logout
       </Item>
     </Menu>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col } from "antd";
 import CardMovie from "./CardMovie";
 import axios from "axios";
-import { BASE_URL } from "../../constain/constain";
+import { BASE_URL } from "../../constants/constain";
 
 import "./ListMovie.scss";
 import { useParams } from "react-router-dom";

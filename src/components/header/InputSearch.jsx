@@ -3,7 +3,7 @@ import { Skeleton } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { BASE_URL } from "../../constain/constain";
+import { BASE_URL } from "../../constants/constain";
 import { Link } from "react-router-dom";
 import { Oval } from "@agney/react-loading";
 function InputSearch() {

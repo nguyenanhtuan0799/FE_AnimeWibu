@@ -11,7 +11,9 @@ const animeApp = createSlice({
     episodesAnime: null,
     animeSlide: null,
     accountUser: Storage.getStorage("auth") || null,
+    loading: false,
   },
+
   reducers: {
     getTrendingDay: (state, action) => {
       state.trendingAnimeDay = action.payload;
@@ -37,6 +39,9 @@ const animeApp = createSlice({
     getLogoutnAccount: (state) => {
       state.accountUser = null;
     },
+    getLoading: (state, action) => {
+      state.loading = action.payload;
+    },
   },
 });
 
@@ -49,5 +54,6 @@ export const {
   getAnimeSlide,
   getLoginAccount,
   getLogoutnAccount,
+  getLoading,
 } = animeApp.actions;
 export default animeApp.reducer;

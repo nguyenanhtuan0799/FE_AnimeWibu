@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
-import { typeC } from "../../../constain/constain";
+import { typeC } from "../../../constants/constain";
 const { Item } = Menu;
 function Type({ title }) {
   const year = [

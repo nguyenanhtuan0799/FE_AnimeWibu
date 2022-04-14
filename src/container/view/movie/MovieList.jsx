@@ -3,8 +3,8 @@ import SliderShow from "../../../components/home/sliderShow/SliderShow";
 import { Row, Col } from "antd";
 import { useParams } from "react-router-dom";
 import { TagsOutlined } from "@ant-design/icons";
-import ListMovie from "../../../components/listMovie/ListMovie";
-import { typeC } from "../../../constain/constain";
+import ListMovie from "../../../components/listMovieType/ListMovie";
+import { typeC } from "../../../constants/constain";
 
 function MovieList() {
   const { type } = useParams();

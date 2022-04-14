@@ -1,6 +1,6 @@
 import "./App.css";
-import "./globalStyle/common.css";
-import Router from "./route";
+import "./style/common.css";
+import Router from "./routes";
 
 function App() {
   return <Router />;

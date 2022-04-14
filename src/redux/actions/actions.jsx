@@ -5,7 +5,7 @@ import img3 from "../../image/anime/img3.jpg";
 import img4 from "../../image/anime/img4.jpg";
 import titleBaner from "../../image/anime/titleBaner.png";
 
-import { BASE_URL } from "../../constain/constain";
+import { BASE_URL } from "../../constants/constain";
 import { auth } from "../../firebase/config";
 import {
   createUserWithEmailAndPassword,
@@ -13,6 +13,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import * as Storage from "../../utils/saveStorage";
+
 export const getTrendingAnimeDay = async (dispatch) => {
   try {
     const res = await axios.get(`${BASE_URL}/ranking/ngay`);
@@ -115,6 +116,7 @@ export const LoginAccount = async (dispatch, email, password) => {
     console.log("error account", e);
   }
 };
+
 export const LogoutAccount = async (dispatch) => {
   try {
     await signOut(auth);
