@@ -2,15 +2,23 @@ import React from "react";
 import { StarOutlined } from "@ant-design/icons";
 import { Card, Divider } from "antd";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getImageAnime } from "../../redux/actions/actions";
 const { Meta } = Card;
 
 function CardMovie({ data }) {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    getImageAnime(dispatch, data.thumbnail);
+  };
   // console.log(data);
   return (
     <div className="card-movie">
       <div className="card">
         <Link to={`/movie/${data.slug}`}>
           <div
+            onClick={handleClick}
             style={{
               boxShadow: "2px 4px 10px  #000",
               borderRadius: "4px",

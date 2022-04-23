@@ -16,50 +16,23 @@ function ListMovie() {
   const [totalPage, setTotalPage] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(NUMBER_PAGE);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getGenresAnime = async () => {
+      setLoading(true);
+
       const res = await axios.get(`${BASE_URL}/genres/${type}?page=1`);
       setTotalPage(res.data.pagination);
-      setHasMore(true);
-      const arr = res.data.data.map((data) => {
-        const res1 = axios.get(`${BASE_URL}/anime/${data.slug}`);
-        return res1;
-      });
-      let info = await Promise.all(arr).then((value) => value);
-      if (info !== null && info !== undefined) {
-        const data1 = info.reduce((init, element) => {
-          const e = element.data.data;
-          return [...init, e];
-        }, []);
-
-        const data = data1.map((data, i) => {
-          return { ...data, ...res.data.data[i] };
-        });
-        setItems(data);
-        setPage(page + 1);
-      }
+      setItems(res.data.data);
+      setLoading(false);
+      setPage(page + 1);
     };
     getGenresAnime();
   }, [type]);
   const getGenresAnime = async () => {
     const res = await axios.get(`${BASE_URL}/genres/${type}?page=${page}`);
-    const arr = res.data.data.map((data) => {
-      const res1 = axios.get(`${BASE_URL}/anime/${data.slug}`);
-      return res1;
-    });
-    let info = await Promise.all(arr).then((value) => value);
-    if (info !== null && info !== undefined) {
-      const data1 = info.reduce((init, element) => {
-        const e = element.data.data;
-        return [...init, e];
-      }, []);
-
-      const data = data1.map((data, i) => {
-        return { ...data, ...res.data.data[i] };
-      });
-      return data;
-    }
+    return res.data.data;
   };
   const fetchData = async () => {
     const data = await getGenresAnime();
@@ -134,38 +107,42 @@ function ListMovie() {
     <Row>
       <Col span={1}></Col>
       <Col span={22}>
-        <InfiniteScroll
-          style={{ overflow: "none", margin: "16px 0" }}
-          dataLength={items !== null && items.length > 0 && items.length}
-          next={fetchData}
-          hasMore={hasMore}
-          loader={loader}
-          endMessage={
-            <p style={{ textAlign: "center", color: "white" }}>
-              <b>
-                <Hearts
-                  width="50"
-                  style={{
-                    color: "red",
-                    marginRight: "10px",
-                    transform: "translateY(3px)",
-                  }}
-                />
-                Yay! You have seen it all
-              </b>
-            </p>
-          }
-        >
-          <Row gutter={[16, 16]}>
-            {items !== null &&
-              items.length > 0 &&
-              items.map((e, i) => (
-                <Col key={i} span={4}>
-                  <CardMovie data={e} />
-                </Col>
-              ))}
-          </Row>
-        </InfiniteScroll>
+        {loading ? (
+          loader
+        ) : (
+          <InfiniteScroll
+            style={{ overflow: "none", margin: "16px 0" }}
+            dataLength={items !== null && items.length > 0 && items.length}
+            next={fetchData}
+            hasMore={hasMore}
+            loader={loader}
+            endMessage={
+              <p style={{ textAlign: "center", color: "white" }}>
+                <b>
+                  <Hearts
+                    width="50"
+                    style={{
+                      color: "red",
+                      marginRight: "10px",
+                      transform: "translateY(3px)",
+                    }}
+                  />
+                  Yay! You have seen it all
+                </b>
+              </p>
+            }
+          >
+            <Row gutter={[16, 16]}>
+              {items !== null &&
+                items.length > 0 &&
+                items.map((e, i) => (
+                  <Col key={i} span={4}>
+                    <CardMovie data={e} />
+                  </Col>
+                ))}
+            </Row>
+          </InfiniteScroll>
+        )}
         {/* <div onClick={handleClick}>click</div> */}
       </Col>
       <Col span={1}></Col>

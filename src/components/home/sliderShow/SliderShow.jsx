@@ -39,7 +39,7 @@ function SliderShow() {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <SubBaner {...rest} />
+                <SubBaner avatar={avatar} {...rest} />
               </div>
             </div>
           ))}

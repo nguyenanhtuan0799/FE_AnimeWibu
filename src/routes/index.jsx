@@ -7,6 +7,7 @@ import MainAuth from "../container/layout/MainAuth";
 import MovieDetail from "../container/view/movie/MovieDetail";
 import MovieList from "../container/view/movie/MovieList";
 import Watch from "../container/view/watch/Watch";
+import ListMovie from "../components/listMovie/ListMovie.jsx";
 import { Routes, Route } from "react-router-dom";
 
 function Router() {
@@ -29,7 +30,7 @@ function Router() {
           <Route path="/type">
             <Route path="/type/:type" element={<MovieList />} />
           </Route>
-
+          <Route path="/account/favorite" element={<ListMovie />} />
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>

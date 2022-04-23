@@ -4,13 +4,20 @@ import { StarOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getInfomationAnime } from "../../../redux/actions/actions";
+import { getImageAnime } from "../../../redux/actions/actions";
 
 function CardSlide({ data }) {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    getImageAnime(dispatch, data.thumbnail);
+  };
   return (
     <div className="card-container">
       <div className="overlay">
         <Link to={`/movie/${data.slug}`}>
           <div
+            onClick={handleClick}
             style={{
               boxShadow: "2px 4px 10px  #000",
               borderRadius: "4px",

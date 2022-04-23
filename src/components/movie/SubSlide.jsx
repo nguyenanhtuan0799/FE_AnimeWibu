@@ -11,9 +11,19 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFavorite } from "../../redux/actions/actions";
 const { Text, Title } = Typography;
 
-function SubSlide({ data }) {
+function SubSlide({ data, imageAnime }) {
+  const dispatch = useDispatch();
+  const handleFavorite = () => {
+    const format = {
+      ...data,
+      thumbnail: imageAnime,
+    };
+    updateFavorite(dispatch, format);
+  };
   return (
     <div
       style={{
@@ -109,7 +119,10 @@ function SubSlide({ data }) {
           </div>
         </Col>
         <Col span={24}>
-          <Text style={{ fontSize: "18px", color: "white" }}>
+          <Text
+            className="des-subslide"
+            style={{ fontSize: "18px", color: "white" }}
+          >
             {data.description}
           </Text>
         </Col>
@@ -141,6 +154,7 @@ function SubSlide({ data }) {
                 icon={<HeartFilled />}
                 size="large"
                 style={{ margin: "0 10px" }}
+                onClick={handleFavorite}
               >
                 Theo Dõi
               </Button>

@@ -12,6 +12,8 @@ const animeApp = createSlice({
     animeSlide: null,
     accountUser: Storage.getStorage("auth") || null,
     loading: false,
+    dataUser: Storage.getStorage("dataUser") || null,
+    imageAnime: null,
   },
 
   reducers: {
@@ -39,8 +41,14 @@ const animeApp = createSlice({
     getLogoutnAccount: (state) => {
       state.accountUser = null;
     },
+    getUsernAccount: (state, action) => {
+      state.dataUser = action.payload;
+    },
     getLoading: (state, action) => {
       state.loading = action.payload;
+    },
+    getImageAnime: (state, action) => {
+      state.imageAnime = action.payload;
     },
   },
 });
@@ -54,6 +62,8 @@ export const {
   getAnimeSlide,
   getLoginAccount,
   getLogoutnAccount,
+  getUsernAccount,
   getLoading,
+  getImageAnime,
 } = animeApp.actions;
 export default animeApp.reducer;

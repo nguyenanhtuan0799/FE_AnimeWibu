@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, Select, Avatar, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "antd";
 import { UserOutlined, HeartOutlined, LogoutOutlined } from "@ant-design/icons";
 import { auth } from "../../../firebase/config";
@@ -11,6 +11,7 @@ const { Option } = Select;
 const { Item } = Menu;
 
 function MenuRight() {
+  const navigation = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((s) => s.infoAnimeApp);
   const { accountUser } = state;
@@ -33,13 +34,14 @@ function MenuRight() {
       </Item>
       <Item style={style} key="2">
         <HeartOutlined style={style1} />
-        <Link to="/">Theo Doi</Link>
+        <Link to="/account/favorite">Theo Doi</Link>
       </Item>
       <Item
         style={style}
         key="3"
         onClick={() => {
           LogoutAccount(dispatch);
+          navigation("/");
         }}
       >
         <LogoutOutlined style={style1} />

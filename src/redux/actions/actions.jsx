@@ -12,27 +12,21 @@ import {
   signOut,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { db } from "../../firebase/config";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  onSnapshot,
+  serverTimestamp,
+} from "firebase/firestore";
 import * as Storage from "../../utils/saveStorage";
 
 export const getTrendingAnimeDay = async (dispatch) => {
   try {
     const res = await axios.get(`${BASE_URL}/ranking/ngay`);
-    const arr = res.data.data.map((data) => {
-      const res1 = axios.get(`${BASE_URL}/anime/${data.slug}`);
-      return res1;
-    });
-    let info = await Promise.all(arr).then((value) => value);
-    if (info !== null && info !== undefined) {
-      const data1 = info.reduce((init, element) => {
-        const e = element.data.data;
-        return [...init, e];
-      }, []);
 
-      const data = data1.map((data, i) => {
-        return { ...data, ...res.data.data[i] };
-      });
-      dispatch(actions.getTrendingDay(data));
-    }
+    dispatch(actions.getTrendingDay(res.data.data));
   } catch (e) {
     console.log("error getTrendingDay", e);
   }
@@ -111,6 +105,18 @@ export const LoginAccount = async (dispatch, email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     Storage.setStorage("auth", auth.currentUser.email);
+    Storage.setStorage("user", {
+      email: auth.currentUser.email,
+      uid: auth.currentUser.uid,
+    });
+    const docSnap = onSnapshot(
+      doc(db, "users", auth.currentUser.uid),
+      (doc) => {
+        Storage.setStorage("dataUser", doc.data());
+        return doc.data();
+      }
+    );
+    dispatch(actions.getUsernAccount(docSnap));
     dispatch(actions.getLoginAccount(auth.currentUser.email));
   } catch (e) {
     console.log("error account", e);
@@ -121,16 +127,66 @@ export const LogoutAccount = async (dispatch) => {
   try {
     await signOut(auth);
     Storage.removeStorage("auth");
+    Storage.removeStorage("user");
+    Storage.removeStorage("dataUser");
     dispatch(actions.getLogoutnAccount());
   } catch (e) {
     console.log("error account", e);
   }
 };
-export const registerAccount = async (dispatch, email, password) => {
+export const registerAccount = async (dispatch, email, password, rest) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     Storage.setStorage("auth", auth.currentUser.email);
+    Storage.setStorage("user", {
+      email: auth.currentUser.email,
+      uid: auth.currentUser.uid,
+    });
+    await setDoc(doc(db, "users", auth.currentUser.uid), {
+      name: rest.firstname + " " + rest.lastname,
+      email: email,
+      uid: auth.currentUser.uid,
+      favorite: [],
+      image: null,
+      timeStamp: serverTimestamp(),
+    });
+    const docSnap = onSnapshot(
+      doc(db, "users", auth.currentUser.uid),
+      (doc) => {
+        Storage.setStorage("dataUser", doc.data());
+        return doc.data();
+      }
+    );
+    dispatch(actions.getUsernAccount(docSnap));
     dispatch(actions.getLoginAccount(auth.currentUser.email));
+  } catch (e) {
+    console.log("error account", e);
+  }
+};
+export const updateFavorite = async (dispatch, value) => {
+  try {
+    const data = Storage.getStorage("dataUser");
+    const newDataUser = {
+      ...data,
+      favorite: [...data.favorite, value],
+    };
+    await setDoc(doc(db, "users", auth.currentUser.uid), newDataUser);
+    const docSnap = onSnapshot(
+      doc(db, "users", auth.currentUser.uid),
+      (doc) => {
+        Storage.setStorage("dataUser", doc.data());
+        return doc.data();
+      }
+    );
+    dispatch(actions.getUsernAccount(docSnap));
+  } catch (e) {
+    console.log("error account", e);
+  }
+};
+
+export const getImageAnime = async (dispatch, value) => {
+  try {
+    dispatch(actions.getImageAnime(value));
   } catch (e) {
     console.log("error account", e);
   }

@@ -6,9 +6,15 @@ import {
   HeartFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getImageAnime } from "../../redux/actions/actions";
 const { Text, Title } = Typography;
 
 function SubBaner(props) {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    getImageAnime(dispatch, props.avatar);
+  };
   const menu = <p style={{ color: "white" }}>Thêm vào lưu trữ</p>;
   return (
     <div
@@ -87,6 +93,7 @@ function SubBaner(props) {
           <div style={{ marginTop: "20px" }}>
             <Link to={`/movie/${props.slug}`}>
               <Button
+                onClick={handleClick}
                 type="primary"
                 shape="round"
                 icon={<PlayCircleOutlined />}

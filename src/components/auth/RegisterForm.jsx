@@ -53,9 +53,9 @@ function RegisterForm(props) {
           cf_password: "",
         }}
         validationSchema={schema}
-        onSubmit={({ email, password }) => {
+        onSubmit={({ email, password, cf_password, ...rest }) => {
           dispatch(actions.getLoading(true));
-          registerAccount(dispatch, email, password);
+          registerAccount(dispatch, email, password, rest);
         }}
       >
         {(props) => {
